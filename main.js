@@ -1,16 +1,32 @@
-import "./style.css"
-import { setupCounter } from "./counter.js"
+import { dogs } from "./data.js"
+import { Dog } from "./Dog.js"
 
-document.querySelector("#app").innerHTML = `
-  <div>
-      <img src="images/badge-like.png" class="logo" alt="Vite logo" />
-      <img src="images/badge-like.png" class="logo vanilla" alt="JavaScript logo" />
-   
-    <h1>TINDOG</h1>
-    <p class="read-the-docs">
-      Tider app for dogs!
-    </p>
-  </div>
-`
+let dogsArray = dogs
+let isWaiting = false
 
-setupCounter(document.querySelector("#counter"))
+const render = () => {
+    document.getElementById("description").innerHTML = dog.getDogHtml()
+    isWaiting = false
+}
+
+const swipe = () => {
+    // console.log("1")
+    if (dogsArray.length > 0) {
+        // console.log("2")
+        dog = getNewDog()
+        render()
+    }
+}
+
+const getNewDog = () => {
+    const nextDogData = dogsArray[0]
+    dogsArray.shift()
+    return dogsArray ? new Dog(nextDogData) : {}
+}
+
+let dog = getNewDog()
+
+document.getElementById("heart").addEventListener("click", swipe)
+document.getElementById("cross").addEventListener("click", swipe)
+
+render()
