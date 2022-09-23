@@ -22,16 +22,12 @@ nav {
     justify-content: space-around;
     background-color: #fff;
     align-items: center;
-
-    /* border: 2px solid blue; */
 }
 
 main {
     background: linear-gradient(180deg, #ffffff 0%, #f6f7fb 100%);
     padding: 0.5rem;
     height: 892px;
-
-    /* border: 2px solid purple; */
 }
 
 .icon-img {
@@ -46,14 +42,6 @@ main {
 
 .dog-info {
     height: 751.44px;
-    /* background: linear-gradient(
-            0deg,
-            rgba(0, 0, 0, 0.9) -11.44%,
-            rgba(0, 0, 0, 0) 39.97%
-        ),
-        url("images/dog-teddy.jpg"); */
-    /* background-size: cover;
-    background-position: center; */
     border-radius: 15px;
     display: flex;
     align-items: flex-end;
@@ -65,8 +53,6 @@ main {
 
 #description {
     padding: 0.5em;
-
-    /* border: 2px solid yellow; */
 }
 
 h1 {

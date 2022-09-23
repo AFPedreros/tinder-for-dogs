@@ -10,17 +10,22 @@ const render = () => {
 }
 
 const swipe = () => {
-    // console.log("1")
-    if (dogsArray.length > 0) {
-        // console.log("2")
-        dog = getNewDog()
-        render()
+    if (!isWaiting) {
+        console.log("clicked")
+        if (dogsArray.length > 0) {
+            isWaiting = true
+            setTimeout(() => {
+                dog = getNewDog()
+                render()
+            }, 1500)
+        }
     }
 }
 
 const getNewDog = () => {
     const nextDogData = dogsArray[0]
     dogsArray.shift()
+
     return dogsArray ? new Dog(nextDogData) : {}
 }
 
