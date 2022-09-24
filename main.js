@@ -6,18 +6,26 @@ let isWaiting = false
 
 const render = () => {
     document.getElementById("description").innerHTML = dog.getDogHtml()
+    document.querySelector(".like-img").style.display = "none"
+    document.querySelector(".nope-img").style.display = "none"
     isWaiting = false
 }
 
-const swipe = () => {
+const swipe = (reaction) => {
+    dog.hasBeenSwiped = true
     if (!isWaiting) {
-        console.log("clicked")
-        if (dogsArray.length > 0) {
+        if (dogsArray.length >= 0) {
             isWaiting = true
+            if (reaction == "liked") {
+                document.querySelector(".like-img").style.display = "block"
+                dog.hasBeenLiked = true
+            } else if (reaction == "nope") {
+                document.querySelector(".nope-img").style.display = "block"
+            }
             setTimeout(() => {
                 dog = getNewDog()
                 render()
-            }, 1500)
+            }, 1000)
         }
     }
 }
@@ -31,7 +39,11 @@ const getNewDog = () => {
 
 let dog = getNewDog()
 
-document.getElementById("heart").addEventListener("click", swipe)
-document.getElementById("cross").addEventListener("click", swipe)
+document.getElementById("heart").addEventListener("click", function () {
+    swipe("liked")
+})
+document.getElementById("cross").addEventListener("click", function () {
+    swipe("nope")
+})
 
 render()

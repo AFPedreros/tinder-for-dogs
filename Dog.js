@@ -17,8 +17,8 @@ class Dog {
 
         return `
         <div>
-        <h1>${name}, ${age}</h1>
-        <h2>${bio}</h2>
+            <h1>${name}, ${age}</h1>
+            <h2>${bio}</h2>
         </div>
         `
     }

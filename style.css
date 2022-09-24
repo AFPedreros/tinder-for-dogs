@@ -40,11 +40,35 @@ main {
     width: 5.25rem;
 }
 
+.like-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.nope-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
 .dog-info {
     height: 751.44px;
     border-radius: 15px;
     display: flex;
     align-items: flex-end;
+    position: relative;
+}
+
+.reaction {
+    height: 116.26px;
+    width: 233.91px;
+    position: absolute;
+    top: 55px;
+    left: 20px;
+    transform: rotate(-30deg);
 }
 
 .actions {
