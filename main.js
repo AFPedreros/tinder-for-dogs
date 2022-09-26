@@ -4,6 +4,17 @@ import { Dog } from "./Dog.js"
 let dogsArray = dogs
 let isWaiting = false
 
+document.getElementById("heart").addEventListener("click", function () {
+    if (!dog.hasBeenSwiped) {
+        swipe("liked")
+    }
+})
+document.getElementById("cross").addEventListener("click", function () {
+    if (!dog.hasBeenSwiped) {
+        swipe("nope")
+    }
+})
+
 const render = () => {
     document.getElementById("description").innerHTML = dog.getDogHtml()
     document.querySelector(".like-img").style.display = "none"
@@ -13,21 +24,42 @@ const render = () => {
 
 const swipe = (reaction) => {
     dog.hasBeenSwiped = true
+
     if (!isWaiting) {
-        if (dogsArray.length >= 0) {
-            isWaiting = true
-            if (reaction == "liked") {
-                document.querySelector(".like-img").style.display = "block"
-                dog.hasBeenLiked = true
-            } else if (reaction == "nope") {
-                document.querySelector(".nope-img").style.display = "block"
-            }
-            setTimeout(() => {
+        if (reaction == "liked") {
+            document.querySelector(".like-img").style.display = "block"
+            dog.hasBeenLiked = true
+        } else if (reaction == "nope") {
+            document.querySelector(".nope-img").style.display = "block"
+        }
+        setTimeout(() => {
+            if (dogsArray.length === 0) {
+                console.log("hello")
+                document.querySelector(".dog-info").innerHTML =
+                    getNoMoreDogsHtml()
+            } else {
                 dog = getNewDog()
                 render()
-            }, 1000)
-        }
+            }
+        }, 1000)
+
+        isWaiting = true
     }
+}
+
+const getNoMoreDogsHtml = () => {
+    document.querySelector(".dog-info").style.background = `linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.9) -11.44%,
+        rgba(0, 0, 0, 0) 39.97%
+    )`
+    document.getElementById("heart").style.display = "none"
+    document.getElementById("cross").style.display = "none"
+
+    return `
+    <div>
+    </div>
+    `
 }
 
 const getNewDog = () => {
@@ -38,12 +70,4 @@ const getNewDog = () => {
 }
 
 let dog = getNewDog()
-
-document.getElementById("heart").addEventListener("click", function () {
-    swipe("liked")
-})
-document.getElementById("cross").addEventListener("click", function () {
-    swipe("nope")
-})
-
 render()
