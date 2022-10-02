@@ -34,7 +34,6 @@ const swipe = (reaction) => {
         }
         setTimeout(() => {
             if (dogsArray.length === 0) {
-                console.log("hello")
                 document.querySelector(".dog-info").innerHTML =
                     getNoMoreDogsHtml()
             } else {
@@ -71,3 +70,16 @@ const getNewDog = () => {
 
 let dog = getNewDog()
 render()
+
+function render() {
+    if (dogs.length === 0) {
+        endSwipes()
+    } else {
+        let dogProfile = getNewDog()
+
+        console.log(dogs.length)
+        document.getElementById("profile-container").innerHTML =
+            dogProfile.getDogHTML()
+        dogProfile.hasBeenSwiped = true
+    }
+}
